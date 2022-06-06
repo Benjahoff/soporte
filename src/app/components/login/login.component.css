@@ -1,0 +1,21 @@
+.background-primary{
+    background-color: #f38001;
+}
+.text-color-primary{
+    color: #ff6219;
+}
+.center-img {
+    margin: 0;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    border-radius: 1rem 0 0 1rem;
+}
+
+.card-login-ctn{
+    border-radius: 1rem;
+}
+.letter-spacing{
+    letter-spacing: 1px;
+}

@@ -1,0 +1,59 @@
+<div class="page-content page-container card mt-3" id="page-content">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="card-title">Detalle de ticket: #2</h2>
+            </div>
+        </div>
+    </div>
+    <div class="padding card-body">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h5>Titulo: La impresora no funciona</h5>
+                    </div>
+                    <div class="col-8">
+                        <h5>Dispositivo: La impresora no funciona</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row container d-flex justify-content-center">
+            <div class="col-md-10">
+                <div class="box box-warning direct-chat direct-chat-warning">
+                    <div class="box-body">
+                        <div class="direct-chat-messages">
+                            <div *ngFor="let mensaje of renglones">
+                            <div  [ngClass]="mensaje.userId != userId ? ' direct-chat-msg right': 'direct-chat-msg ' " >
+                                <div class="direct-chat-info clearfix">
+                                    <span class="direct-chat-name pull-left">{{mensaje.username }}</span>
+                                    <span class="direct-chat-timestamp pull-right"> {{mensaje.fecha | date :'short'}}</span>
+                                </div>
+                                <div class="direct-chat-text">
+                                   {{mensaje.detalle}}
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="box-footer">
+                        <form action="#" method="post">
+                            <div class="input-group">
+                                <input type="text" name="message" placeholder="Escribir mensaje ..." class="form-control">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-warning btn-flat">Enviar</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
