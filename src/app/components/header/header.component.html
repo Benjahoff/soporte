@@ -1,9 +1,9 @@
 <nav class="navbar navbar-light background-primary">
     <a class="navbar-brand img-header" href="#">
-      <img src="../../assets/logoHomeBlanco.png" width="95" height="35" alt="Logo-Home">
+      <img src="../../../assets/logoHomeBlanco.png" width="95" height="35" alt="Logo-Home">
     </a>
-    <span class="navbar-text">
-        <button type="button" class="btn btn-default btn-sm margin-btn">
+    <span class="navbar-text" *ngIf="userId !== -1">
+        <button type="button" class="btn btn-default btn-sm margin-btn" (click)="logout()">
             <fa-icon [icon]="faLogout" ></fa-icon>
         </button>
     </span>

@@ -14,6 +14,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalCrearTicketComponent } from './components/modals/modal-crear-ticket/modal-crear-ticket.component';
+import { NgxLoadingModule } from 'ngx-loading';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
 
 @NgModule({
   declarations: [
@@ -33,8 +36,10 @@ import { ModalCrearTicketComponent } from './components/modals/modal-crear-ticke
     HttpClientModule,
     NgbModule,
     FontAwesomeModule,
+    NgxLoadingModule.forRoot({}),
+    Ng2SmartTableModule
   ],
-  providers: [],
+  providers: [CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

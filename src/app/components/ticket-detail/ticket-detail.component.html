@@ -7,16 +7,30 @@
         </div>
     </div>
     <div class="padding card-body">
-        <div class="card mb-3">
-            <div class="card-body">
+        <div class="card mb-3"  *ngIf="!loadingTicket">
+            <div class="card-body" [ngClass]="ticket.estado === 'Abierto' ? 'table-danger ' : ticket.estado === 'En proceso' ? 'table-warning': 'table-success'">
                 <div class="row">
                     <div class="col-8">
-                        <h5>Titulo: La impresora no funciona</h5>
+                        <h5>Titulo: {{ticket.titulo}}</h5>
                     </div>
                     <div class="col-8">
-                        <h5>Dispositivo: La impresora no funciona</h5>
+                        <h5>Dispositivo: {{ticket.dispositivo}}</h5>
+                    </div>
+                    <div class="col-8"  *ngIf="levelUser <= 8">
+                        <h5>Estado: {{ticket.estado}}</h5>
+                    </div>
+                    <div class="col-8" *ngIf="levelUser > 8">
+                        <div>
+                            <select name="selectEstado" [(ngModel)]="ticket.estadoId">
+                                <option [value]="estado.id" *ngFor="let estado of estados" [selected]="ticket.estadoId == estado.id">{{estado.descripcion}}</option>
+                            </select>
+                            <button class="ml-2 btn btn-sm btn-success" [ngClass]="ticket.estado === 'Cerrado' ? 'bg-danger ' :''" (click)="changeEstado()">Cambiar</button>
+                        </div>
                     </div>
                 </div>
+                <ngx-loading
+                        [show]="loadingTicket"
+                ></ngx-loading>
             </div>
         </div>
         <div class="row container d-flex justify-content-center">
@@ -36,18 +50,18 @@
                             </div>
                             </div>
                         </div>
-
+                        <ngx-loading
+                        [show]="loadingTicket"
+                        ></ngx-loading>
                     </div>
 
-                    <div class="box-footer">
-                        <form action="#" method="post">
+                    <div class="box-footer"  *ngIf="!loadingTicket">
                             <div class="input-group">
-                                <input type="text" name="message" placeholder="Escribir mensaje ..." class="form-control">
+                                <input type="text" name="message" placeholder="Escribir mensaje ..."  [disabled]="ticket.estado == 'Cerrado'" class="form-control" [(ngModel)]="mensaje">
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-warning btn-flat">Enviar</button>
+                                    <button type="button" class="btn btn-warning btn-flat" (click)="sendMensaje()" [disabled]="ticket.estado == 'Cerrado'" >Enviar</button>
                                 </span>
                             </div>
-                        </form>
                     </div>
 
                 </div>

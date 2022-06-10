@@ -10,7 +10,7 @@
                 </div>
             </div>
         </div>
-        <table class="table  table-dark">
+        <!-- <table class="table  table-dark">
             <thead>
                 <tr>
                     <th scope="col">id</th>
@@ -37,8 +37,11 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
+        <ngx-loading  [show]="loadingTickets">
+        </ngx-loading>
+        <ng2-smart-table [settings]="settings" [source]="tickets" (custom)="navigateDetail($event)"></ng2-smart-table>
     </div>
     <div class="col-2"></div>
 </div>
-<app-modal-crear-ticket #ModalCrearTicketComponent></app-modal-crear-ticket>
+<app-modal-crear-ticket #ModalCrearTicketComponent (creadoExitoso)="getTickets()"></app-modal-crear-ticket>

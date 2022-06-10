@@ -1,5 +1,6 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TicketService } from 'src/app/services/ticket.service';
 
 @Component({
   selector: 'app-modal-crear-ticket',
@@ -8,11 +9,23 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalCrearTicketComponent implements OnInit {
   
+
+  @Output()
+  creadoExitoso = new EventEmitter()
   @ViewChild("modalCrearTicket", { static: false }) modalCrearTicket: TemplateRef<any>;
   modalOpen: boolean = false;
   closeResult: string;
+  userId;
+  titulo:string;
+  detalle:string;
+  equipo:string;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private ticketService:TicketService) {
+    let sessionUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (sessionUser) {
+      this.userId = sessionUser['id'];
+    }
+   }
 
   ngOnInit(): void {
   }
@@ -43,7 +56,7 @@ export class ModalCrearTicketComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-  
+
   ngOnDestroy() {
     if(this.modalOpen){
       this.modalService.dismissAll();
@@ -52,6 +65,13 @@ export class ModalCrearTicketComponent implements OnInit {
 
   closeModal(){
     this.modalService.dismissAll();
+  }
+
+  crearTicket(){
+    this.ticketService.addTicket(this.userId, this.titulo, this.equipo, this.detalle)
+      .subscribe(() =>{ 
+        this.creadoExitoso.emit();
+        this.closeModal()});
   }
 
 }

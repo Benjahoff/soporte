@@ -7,14 +7,49 @@ import { environment } from '../environments/environment';
 })
 export class TicketService {
 
+
   constructor(private http: HttpClient) { }
 
-  getTickets(){
+  getTickets(token){
+    let data ={
+      token:token
+    }
     return this.http
-    .get<any>(`${environment.endpoint}/getTicketsTabla`)
+    .post<any>(`${environment.endpoint}/getTicketsTabla`, data)
   }
 
   getTicketDetail(ticketId: string) {
     return this.http
-    .get<any>(`${environment.endpoint}/getTicketDetalle/`+ticketId)  }
+    .get<any>(`${environment.endpoint}/getTicketDetalle/`+ticketId)
+  }
+
+  addTicket(userId, titulo, equipo, detalle){
+    let data = {
+      userId: userId,
+      titulo: titulo,
+      equipo: equipo,
+      detalle: detalle
+    }
+    return this.http
+    .post<any>(`${environment.endpoint}/addTicket`, data)
+  }
+
+  changeTicketStatus(ticketId, estadoId, user_id) {
+    let data = {
+      ticketId:ticketId,
+      estadoId: estadoId,
+      user_id: user_id,
+    }
+    return this.http
+    .post<any>(`${environment.endpoint}/changeTicketStatus`, data)  }
+
+  sendMensaje(ticket_id, user_id, detalle){
+    let data = {
+      ticket_id: ticket_id,
+      user_id: user_id,
+      detalle: detalle,
+    }
+    return this.http
+    .post<any>(`${environment.endpoint}/sendMensaje`, data)
+  }
 }

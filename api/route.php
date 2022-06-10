@@ -38,8 +38,11 @@ $r->addRoute("backoffice/management", "GET", "crudController", "management");
 $r->addRoute("parameters", "GET", "crudController", "getParameters");
 
 //tickets
-$r->addRoute("getTicketsTabla", "GET", "ticketController", "getTicketsTabla");
+$r->addRoute("addTicket", "POST", "ticketController", "addTicket");
+$r->addRoute("changeTicketStatus", "POST", "ticketController", "changeTicketStatus");
+$r->addRoute("getTicketsTabla", "POST", "ticketController", "getTicketsTabla");
 $r->addRoute("getTicketDetalle/:id", "GET", "ticketController", "getTicketDetalle");
+$r->addRoute("sendMensaje", "POST", "ticketController", "sendMensaje");
 
 //run
 $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);

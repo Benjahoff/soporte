@@ -251,9 +251,9 @@ body {
 }
 
 .direct-chat-warning .right>.direct-chat-text {
-    background: #f39c12;
-    border-color: #f39c12;
-    color: #fff;
+    background: #f3c985ec;
+    border-color: #f3c985ec;
+    color: rgb(0, 0, 0);
 }
 
 .right .direct-chat-text {

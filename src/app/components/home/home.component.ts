@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { faSearchPlus } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { TicketService } from 'src/app/services/ticket.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -15,46 +16,64 @@ export class HomeComponent implements OnInit {
   
   tickets:any;
   faDetail = faSearchPlus;
+  token:any;
   settings = {
+    actions: {
+      edit: null,
+      add: null,
+      delete:null,
+      custom: [
+        {
+          name: 'Ver Detalle',
+          title: 'Ver Detalle',
+        },
+      ],
+    },
     columns: {
       id: {
         title: 'id'
       },
-      Titulo: {
+      titulo: {
         title: 'Titulo'
       },
-      Dispositivo: {
+      dispositivo: {
         title: 'Dispositivo'
       },
-      Fecha: {
+      fecha: {
         title: 'Fecha'
       },
-      Usuario: {
+      username: {
         title: 'Usuario'
       },
-      Estado: {
+      estado: {
         title: 'Estado'
-      },
-      VerDetalle: {
-        title: 'Ver detalle'
       },
     }
   };
 
-  constructor(private TicketService:TicketService, private router: Router) { }
+  loadingTickets: boolean = false
+  constructor(private TicketService:TicketService, private router: Router, private AuthService: AuthService) { 
+    this.AuthService.currentUserSubject.subscribe((val)=>{
+      if (val && val['token']) {
+        this.token = val['token']
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.getTickets()
   }
 
   getTickets(){
-    this.TicketService.getTickets().subscribe( (res)=> {
+    this.loadingTickets = true;
+    this.TicketService.getTickets(this.token).subscribe( (res)=> {
       this.tickets = res['tickets'];
+      this.loadingTickets = false;
     })
   }
 
   navigateDetail(id){
-    this.router.navigate(['ticketDetail/'+id])
+    this.router.navigate(['ticketDetail/'+id.data.id])
   }
 
   openModal(){

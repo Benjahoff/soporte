@@ -1,6 +1,7 @@
 import { TicketService } from './../../services/ticket.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-ticket-detail',
@@ -15,13 +16,23 @@ export class TicketDetailComponent implements OnInit {
 
   renglones:any;
 
-  userId: any;
+  estados:any;
 
-  constructor(private route: ActivatedRoute, private TicketService: TicketService) { 
-    let sessionUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (sessionUser) {
-      this.userId = sessionUser['id'];
-    }
+  userId: any;
+  levelUser:any;
+
+  mensaje: string;
+
+  loadingTicket:boolean = false;
+
+
+  constructor(private route: ActivatedRoute, private TicketService: TicketService, private AuthService:AuthService) { 
+    this.AuthService.currentUserSubject.subscribe((val)=>{
+      if (val && val['id']) {
+        this.userId = val['id']
+        this.levelUser = val['level']
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -30,10 +41,30 @@ export class TicketDetailComponent implements OnInit {
   }
 
   getTicketDetail(){
+    this.loadingTicket = true;
     this.TicketService.getTicketDetail(this.ticketId).subscribe((res)=>{
-      this.ticket = res['ticket'];
+      this.ticket = res['ticket'][0];
       this.renglones = res['renglones'];
+      this.loadingTicket = false;
       console.log(res);
+      this.estados = res['estados']
+    })
+  }
+
+  sendMensaje(){
+    if (this.mensaje.trim() !== '') {
+      this.loadingTicket = true;
+      this.TicketService.sendMensaje(this.ticketId, this.userId, this.mensaje)
+      .subscribe(() =>{
+        this.mensaje= ''
+        this.getTicketDetail()
+        });
+    }
+  }
+
+  changeEstado(){
+    this.TicketService.changeTicketStatus(this.ticketId, this.ticket.estadoId, this.userId).subscribe((res)=>{
+      this.getTicketDetail();
     })
   }
 }

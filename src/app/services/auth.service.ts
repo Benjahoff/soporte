@@ -9,7 +9,7 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<User>
+  public currentUserSubject: BehaviorSubject<User>
   public currentUser: Observable<User>
   private tokenRefreshLoad: boolean
 
