@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-06-2022 a las 14:03:10
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Tiempo de generación: 10-06-2022 a las 18:46:37
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 7.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -541,16 +541,9 @@ CREATE TABLE `ticket` (
 --
 
 INSERT INTO `ticket` (`id`, `titulo`, `dispositivo`, `user_id`, `fecha`, `estado_id`) VALUES
-(1, 'No funciona la impresora', 'hp-440 laserjet', 2, '2022-05-31 13:51:11', 1),
-(3, 'No funciona la impresora', 'hp-440 laserjet', 2, '2022-05-31 13:51:36', 2),
-(5, 'No funciona la impresora', 'hp-440 laserjet', 2, '2022-05-31 13:51:40', 3),
-(7, 'No funciona la impresora', 'hp-440 laserjet', 2, '2022-05-31 13:51:42', 1),
-(9, 'No funciona la impresora', 'hp-440 laserjet', 2, '2022-05-31 13:51:44', 2),
-(11, 'No funciona la impresora', 'hp-440 laserjet', 2, '2022-05-31 13:51:46', 1),
-(13, 'No funciona la impresora', 'hp-440 laserjet', 2, '2022-05-31 13:51:48', 1),
-(15, 'No funciona la impresora', 'hp-440 laserjet', 2, '2022-05-31 13:51:49', 3),
-(17, 'No funciona la impresora', 'hp-440 laserjet', 2, '2022-05-31 13:51:52', 1),
-(19, 'No funciona la impresora', 'hp-440 laserjet', 2, '2022-05-31 13:51:54', 3);
+(38, 'No funciona disco solido', 'Recepcion', 2, '2022-06-08 13:36:39', 1),
+(39, 'Test1', 'IMPRESOR', 14, '2022-06-10 11:36:18', 1),
+(40, 'PruebaBrown', 'celular recepcion', 15, '2022-06-10 13:25:28', 1);
 
 -- --------------------------------------------------------
 
@@ -573,7 +566,26 @@ CREATE TABLE `ticketrenglon` (
 INSERT INTO `ticketrenglon` (`id`, `ticket_id`, `user_id`, `detalle`, `fecha`) VALUES
 (1, 1, 2, 'Buen dia, hoy al comenzar el dia note que la impresora no funciona, la cola de impresion se llena pero no imprime. gracias', '2022-06-01 12:18:26'),
 (2, 1, 7, 'Buen dia, me podrias pasar el codigo de any desk de la compu? asi entro y trato de solucionar', '2022-06-01 12:19:12'),
-(3, 1, 2, '245 307 909', '2022-06-01 12:19:33');
+(3, 1, 2, '245 307 909', '2022-06-01 12:19:33'),
+(6, 1, 2, 'Hola el problema me sigue pasando, gracias', '2022-06-06 12:36:44'),
+(7, 1, 2, 'Necesito una respuesta rapido, gracias', '2022-06-06 12:46:01'),
+(8, 1, 2, 'weeep', '2022-06-06 12:46:27'),
+(9, 1, 8, 'Hola operador tu respuesta esta siendo procesada', '2022-06-06 12:47:23'),
+(10, 1, 2, 'Buenass', '2022-06-06 13:46:12'),
+(11, 1, 2, 'Ya lo viste _ ', '2022-06-06 13:46:31'),
+(12, 1, 2, 'asdasdasdasdasd', '2022-06-06 13:46:52'),
+(13, 32, 2, 'La balanza funciona mal', '2022-06-06 14:02:31'),
+(14, 1, 2, 'AAAA', '2022-06-08 09:00:38'),
+(15, 33, 2, 'no anda', '2022-06-08 11:45:36'),
+(16, 1, 2, 'El estado del ticket fue cambiado a : Abierto', '2022-06-08 13:13:13'),
+(17, 1, 2, 'El estado del ticket fue cambiado a : En proceso', '2022-06-08 13:13:25'),
+(18, 34, 2, 'AAAAAAAAAAAAAAAAAAAAA', '2022-06-08 13:29:01'),
+(19, 35, 2, 'a', '2022-06-08 13:33:07'),
+(20, 36, 2, 'aasdasdasdasd', '2022-06-08 13:33:20'),
+(21, 37, 2, 'ZZZZZZZZZZZZZZZZZZ', '2022-06-08 13:33:57'),
+(22, 38, 2, 'Prende la pc y no reconoce el disco', '2022-06-08 13:36:39'),
+(23, 39, 14, 'ASDASDASD', '2022-06-10 11:36:18'),
+(24, 40, 15, 'asdasdasdasdasd', '2022-06-10 13:25:28');
 
 -- --------------------------------------------------------
 
@@ -597,15 +609,16 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `mail`, `password`, `telefono`, `last_login`, `roles_id`, `nivel`) VALUES
-(1, 'adminuser', 'admin@admin.com', '$2y$12$UrOzf8hrtdevAMj/FLtgUuLKTLzUBGeO/akLKK65Igf7u2alXDU5a', '', '2021-01-24 13:24:48', 2, 9),
-(2, 'demoOperador', 'demoOperador@gmail.com', '$2y$12$UrOzf8hrtdevAMj/FLtgUuLKTLzUBGeO/akLKK65Igf7u2alXDU5a', '', '2022-06-02 15:07:01', 2, 9),
-(5, 'tesoreria', 'tesoreria@com', '$2y$10$UTtIBQwB/Ba9blbnbxx7NOCmXGE3U0ZitTIU8feFQrqN8ITbgHopC', '', '2022-05-14 12:45:49', 4, 7),
-(6, 'anahi', 'anahi@com', '$2y$10$70jn/EmQcKChuA1XOrKYROkBm84wXhaeUfXUcDaQD5G0WUr.k1iI2', '', NULL, 4, 7),
-(7, 'federico', 'federico@com', '$2y$10$dVBtK3MqwMIAn/xLKwFQ.ej67C1BjODpQYy1m9KHjRzlB7sXrRdVe', '', NULL, 4, 7),
-(8, 'roberto', 'roberto@com', '$2y$10$TtVwUu6paxZxx0Q8kih.FOcxzbgmq/EV88l61FtOoXctaTREpTJ/O', '', '2021-11-29 09:37:27', 4, 7),
-(9, 'gaston', 'gaston@com', '$2y$10$dcecA1sSyrkrRyYdZZyNb.1U6mjyNFo9P5DZwajkOPKIRT6X/Nz5e', '', '2022-05-16 08:42:23', 5, 9),
-(10, 'diego', 'diego@com', '$2y$10$22BTBOGGj9hkFP8dZU1TleQe6Lt/6qnu5qhutATOHItKpuElVKLLO', '', NULL, 2, 9),
-(11, 'Web', 'web@com', '$2y$10$22BTBOGGj9hkFP8dZU1TleQe6Lt/6qnu5qhutATOHItKpuElVKLLO', '', NULL, 2, 9);
+(12, 'Roberto', 'rogworksi@gmail.com', '$2y$10$c.Z.4I9AY57OopAJzxA70uHeFGy94wLR.wNMISxBvGIZSQfpXGwQS', '2235812967', '2022-06-10 13:22:33', 2, 9),
+(13, 'Pipo', 'pipoworksi@gmail.com', '$2y$10$kpM50GWPz2C4fv42blnVWuQj9uWIlRczllosdrLYycKu0O/EKEhpm', '2234563313', '2022-06-10 13:24:39', 2, 9),
+(14, 'Benja', 'oriozabalabenja@gmail.com', '$2y$10$bNSc6Ttg9mABnjH7RngoWeY9GkRcpmboOnoCahw3gSmGIMYe2jArS', '2314501359', '2022-06-10 13:25:51', 2, 9),
+(15, 'BrownBolivar', 'brown@bolivar.com', '$2y$10$WCDc8I.6JXkaGRMYv7G0oeqWpjiJboLoD6afxac8X3kfvT3Lm8ODu', '0000000000', '2022-06-10 13:25:07', 2, 6),
+(16, 'LavalleBolivar', 'LavalleBolivar@lavalle.com', '$2y$10$Ier2lg.Cw2uqpXJhnP34kOrRfvgP7hR8glz2SBlNMaZsttu6wDYDi', '00000000000', '2022-06-10 13:25:42', 2, 6),
+(17, 'ActualLasFlores', 'ActualLasFlores@gmail.com', '$2y$10$repb8SOsYnuKZGAB4dsK7OZTzu0oYpn.YH29wdCFO21t6w82saBWW', '000000000', '2022-06-10 13:21:40', 2, 6),
+(18, 'ActualAdministracion', 'ActualAdministracion@gmail.com', '$2y$10$vurB5VyrFVJpMvdGQD.oLusnfyxrnVQLNDOO1T1/86mucYYBo7g1e', '00000000000', '2022-06-10 16:32:04', 2, 6),
+(19, 'ActualDx', 'ActualDx@gmail.com', '$2y$10$7DUUD1vJtwvW3Q6gBS670OATQLhJUJf3yWvPneYuJN7i7sWLdU05C', '0000000000', '2022-06-10 16:33:31', 2, 6),
+(20, 'Actual9deJulio', 'Actual9deJulio@gmail.com', '$2y$10$tXtHFiWfrTxquU6uJ33N6.dxX8RHxx..xmLFoqfXsWTOuQ2XLFriK', '0000000000', '2022-06-10 11:36:33', 2, 6),
+(22, 'ActualDeposito', 'ActualDeposito@gmail.com', '$2y$10$YK7HWfXwkea/tiGdNv36WuEA4wMiQaAdxNZvLxLuSuRc0md61/wJa', '0000000000', '2022-06-10 16:34:52', 2, 6);
 
 --
 -- Índices para tablas volcadas
@@ -686,19 +699,19 @@ ALTER TABLE `tablaaux`
 -- AUTO_INCREMENT de la tabla `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `ticketrenglon`
 --
 ALTER TABLE `ticketrenglon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
