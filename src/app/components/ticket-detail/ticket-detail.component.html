@@ -42,7 +42,7 @@
                             <div  [ngClass]="mensaje.userId != userId ? ' direct-chat-msg right': 'direct-chat-msg ' " >
                                 <div class="direct-chat-info clearfix">
                                     <span class="direct-chat-name pull-left">{{mensaje.username }}</span>
-                                    <span class="direct-chat-timestamp pull-right"> {{mensaje.fecha | date :'short'}}</span>
+                                    <span class="direct-chat-timestamp pull-right"> {{mensaje.fecha | date:'dd/MM/yyyy HH:mm' }}</span>
                                 </div>
                                 <div class="direct-chat-text">
                                    {{mensaje.detalle}}
