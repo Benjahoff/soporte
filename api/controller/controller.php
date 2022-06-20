@@ -16,10 +16,19 @@ class controller
         Sentry\init(['dsn' => 'https://cb9931b44a07497eaf334c0e85717f43@o938498.ingest.sentry.io/5888284']);
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $this->modularModel = new modelBase();
+<<<<<<< HEAD
         //$this->uri = 'http://localhost/soporte-worksi/';
         //$this->uriApi = 'http://localhost/soporte-worksi/api';
         $this->uri = 'https://wks.ar/soporte/';
         $this->uriApi = 'https://wks.ar/soporte/api/';
+=======
+        $this->uri = 'http://localhost/worksi-soporte/';
+        $this->uriApi = 'http://localhost/worksi-soporte/api';
+
+        // endpoint prod
+        //$this->uri = 'https://wks.ar/soporte/';
+        //$this->uriApi = 'https://wks.ar/soporte/api/';
+>>>>>>> main
     }
 
     public function returnData($data, $httpCode)
@@ -33,8 +42,8 @@ class controller
     {
         $output = false;
         $encrypt_method = "AES-256-CBC";
-        $secret_key = 'worksiZamorano123';
-        $secret_iv = 'ZamoranoViajesWorksiWeb';
+        $secret_key = 'WksSoporte123';
+        $secret_iv = 'WksSoporte';
         // hash
         $key = hash('sha256', $secret_key);
 
