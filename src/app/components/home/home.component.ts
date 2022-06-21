@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HomeComponent implements OnInit {
 
   @ViewChild(ModalCrearTicketComponent) public crearTicketModal: ModalCrearTicketComponent;
-  
+
   tickets:any;
   faDetail = faSearchPlus;
   token:any;

@@ -17,6 +17,8 @@ import { ModalCrearTicketComponent } from './components/modals/modal-crear-ticke
 import { NgxLoadingModule } from 'ngx-loading';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
     NgbModule,
     FontAwesomeModule,
     NgxLoadingModule.forRoot({}),
+    BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot({}),
     Ng2SmartTableModule
   ],
   providers: [CanDeactivateGuard],
