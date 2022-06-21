@@ -6,6 +6,6 @@
 
  $db_host = "localhost";
  $db_base = "c2wks";
- $db_user = "c2wks";
- $db_pass = "D@gxF9ZrqvSvH"; 
+ $db_user = "c2soporte";
+ $db_pass = "gmYgsV#HU6"; 
 ?>
