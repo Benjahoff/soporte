@@ -19,6 +19,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SimpleNotificationsModule.forRoot({}),
     Ng2SmartTableModule
   ],
-  providers: [CanDeactivateGuard],
+  providers: [CanDeactivateGuard,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
