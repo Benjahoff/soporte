@@ -5,7 +5,7 @@
  $db_pass = ""; */
 
  $db_host = "localhost";
- $db_base = "c2wks";
- $db_user = "c2soporte";
- $db_pass = "gmYgsV#HU6"; 
+ $db_base = "c2soporte";
+ $db_user = "c2wks";
+ $db_pass = "gmYgsV#HU6";
 ?>
