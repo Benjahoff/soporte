@@ -11,9 +11,9 @@ const routes: Routes = [
 
   {
     path: '',
-    component: LoginComponent,
+    component: HomeComponent,
     data: {
-      title: 'Login Page',
+      title: 'Home',
     },
     canActivate: [AuthGuard],
     children: [
@@ -37,7 +37,7 @@ const routes: Routes = [
     path: 'ticketDetail/:id',
     component: TicketDetailComponent,
     data: {
-      title: 'Home Page',
+      title: 'Ticket Detail',
     },
     canActivate: [AuthGuard],
     },
