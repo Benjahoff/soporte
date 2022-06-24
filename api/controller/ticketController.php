@@ -6,11 +6,13 @@ require 'vendor/autoload.php';
 
 class ticketController extends crudController
 {
+    private $token;
 
     public function __construct()
     {
         parent::__construct();
         $this->response = new stdClass();
+        $this->token = 'Authorization: Bearer EAAKnnxNa2QoBAE6MuZBiDZC5bXrPJOZCBHZAfKGZB0NdifctJg6wWXbzxrX1lVxqqSQfcPl7A7nzZCCZAJTKKIdKWmdS0NUNcPdqKcUhOn4YlZAkh9cQZANNyZAwoTi2q8A6ZCqgknBeII9fgWLj0pr0hmvOKWYzAICKI6994ul1k1oMLT6ZAVNFZAbO4';
     }
 
     public function addTicket()
@@ -130,7 +132,7 @@ class ticketController extends crudController
         ];
 
         $headr = array();
-        $headr[] =  'Authorization: Bearer EAAKnnxNa2QoBAE6MuZBiDZC5bXrPJOZCBHZAfKGZB0NdifctJg6wWXbzxrX1lVxqqSQfcPl7A7nzZCCZAJTKKIdKWmdS0NUNcPdqKcUhOn4YlZAkh9cQZANNyZAwoTi2q8A6ZCqgknBeII9fgWLj0pr0hmvOKWYzAICKI6994ul1k1oMLT6ZAVNFZAbO4';        # Create a connection
+        $headr[] =  $this->token;        # Create a connection
         $url = 'https://graph.facebook.com/v13.0/101900062567452/messages';
         //$url = 'localhost/worksi-web/generate-electronic-billing';
         $ch = curl_init($url);
