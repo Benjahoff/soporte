@@ -26,15 +26,11 @@ class ticketController extends crudController
         $sql = "INSERT INTO ticketrenglon(ticket_id, user_id, detalle) VALUES ({$ticketId[0]->id}, $userId, '$detalle');";
         $this->modularModel->sqlVarios($sql);
         $this->response->status = "OK";
-<<<<<<< HEAD
-        $this->enviarWhatsApp('2314501359', $ticketId);
-=======
         $admins = $this->modularModel->getRegistrosTabla('user','nivel >= 9','',"O");
         foreach ($admins as $key => $admin) {
             $numero = '+54' . $admin->telefono;
             $this->enviarWhatsApp($numero, $ticketId[0]->id);
         }
->>>>>>> main
         $this->returnData($this->response, 200);
     }
 
@@ -103,31 +99,17 @@ class ticketController extends crudController
             "to" => "$numero",
             "type" => "template",
             "template" => [
-<<<<<<< HEAD
-                "name" => "nuevo_ticket",
-=======
                 "name" => "nuevo_ticket2",
->>>>>>> main
                 "language" => [
                     "code" => "es_AR"
                 ],
                 "components" => [
                     [
-<<<<<<< HEAD
-                        "type" => "header",
-                        "parameters" => [
-                            [
-                                "type" => "image",
-                                "image" => [
-                                    "link" => "https://scontent.faep9-2.fna.fbcdn.net/v/t1.6435-9/121136761_2688723688007615_7198475510556206707_n.png?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEw874Rzx24jXt9bGBirBn7BHn-qCXVtOsEef6oJdW06xi2rj-kb1DAF8XLGLebb8EbSfyRLGxnqrY9yXI86t8J&_nc_ohc=eDium3oDbZUAX9a9DDv&_nc_ht=scontent.faep9-2.fna&oh=00_AT-2idKF4kej9fmVGufUooTGTy1wzpXaLcvDdrwcrzjQsQ&oe=62CE125C"
-                                ]
-=======
                         "type" => "body",
                         "parameters" => [
                             [
                                 "type" => "text",
                                 "text" => $ticketId
->>>>>>> main
                             ]
                         ]
                     ]
