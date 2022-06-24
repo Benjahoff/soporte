@@ -24,8 +24,13 @@ class ticketController extends crudController
         $sql = "SELECT MAX( id ) AS id FROM ticket;";
         $ticketId = $this->modularModel->sqlVariosReturn($sql,"O");
         $sql = "INSERT INTO ticketrenglon(ticket_id, user_id, detalle) VALUES ({$ticketId[0]->id}, $userId, '$detalle');";
-        $ticketId = $this->modularModel->sqlVarios($sql);
+        $this->modularModel->sqlVarios($sql);
         $this->response->status = "OK";
+        $admins = $this->modularModel->getRegistrosTabla('user','nivel >= 9','',"O");
+        foreach ($admins as $key => $admin) {
+            $numero = '+54' . $admin->telefono;
+            $this->enviarWhatsApp($numero, $ticketId[0]->id);
+        }
         $this->returnData($this->response, 200);
     }
 
@@ -81,6 +86,72 @@ class ticketController extends crudController
         $sql = "INSERT INTO ticketrenglon(ticket_id, user_id, detalle) VALUES ($ticketId, $user_id, '$texto');";
         $this->modularModel->sqlVarios($sql);
         $this->response->status = "OK";
+        $this->returnData($this->response, 200);
+    }
+
+    public function enviarWhatsApp($numero, $ticketId)
+    {
+        $link = "ticketDetail/" . $ticketId;
+        # Our new data
+        $data = [
+            "messaging_product" => "whatsapp",
+            "preview_url"=> 'true',
+            "to" => "$numero",
+            "type" => "template",
+            "template" => [
+                "name" => "nuevo_ticket2",
+                "language" => [
+                    "code" => "es_AR"
+                ],
+                "components" => [
+                    [
+                        "type" => "body",
+                        "parameters" => [
+                            [
+                                "type" => "text",
+                                "text" => $ticketId
+                            ]
+                        ]
+                    ]
+                    ,
+                    [
+                        "type" => "button",
+                        "sub_type" => "url",
+                        "index" => 0,
+                        "parameters" => [
+                            [
+                                "type" => "text",
+                                "text" => $link
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $headr = array();
+        $headr[] =  'Authorization: Bearer EAAKnnxNa2QoBAO5IIV74PWT4ryVG8hF3k8rP0ZCOdMb83b1aHOxnnke6kE2sruzJRLDDroFZCarmuxEMZAZC6uoB9LKas1hfjlqXR8ZBKQHcdpzTUZBYszPbGSC52ZBi3sLfGdzpSKZBvQAerlZAGaMLZBJrAUvZBH36oQsZCFZA3fIUNEQZDZD';
+        # Create a connection
+        $url = 'https://graph.facebook.com/v13.0/101900062567452/messages';
+        //$url = 'localhost/worksi-web/generate-electronic-billing';
+        $ch = curl_init($url);
+        # Form data string
+        $postString = http_build_query($data, '', '&');
+        # Setting our options
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headr);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postString);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // Check if any error occurred
+        if (curl_errno($ch)) {
+            $response =  'ERROR - Servicio  caido - ' . curl_error($ch);
+        } else {
+            # Get the response
+            $response = curl_exec($ch);
+        }
+        curl_close($ch);
+        ////////////////////
+        $this->response->status = $response;
         $this->returnData($this->response, 200);
     }
 }
