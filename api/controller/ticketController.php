@@ -130,7 +130,7 @@ class ticketController extends crudController
         ];
 
         $headr = array();
-        $headr[] =  'Authorization: Bearer EAAKnnxNa2QoBAO5IIV74PWT4ryVG8hF3k8rP0ZCOdMb83b1aHOxnnke6kE2sruzJRLDDroFZCarmuxEMZAZC6uoB9LKas1hfjlqXR8ZBKQHcdpzTUZBYszPbGSC52ZBi3sLfGdzpSKZBvQAerlZAGaMLZBJrAUvZBH36oQsZCFZA3fIUNEQZDZD';
+        $headr[] =  'Authorization: Bearer EAAKnnxNa2QoBAAzSQHQPaXx34ez7ZCqsAUBIkOSlliBNaZAtaZBlUkTqQwJc3vcZCikuVdeFh6gIvMy5ZBBfUpb3ZAJNhUUxzfFvOqQTgGJPE7CltxK50ogvhhrIsGCelNxfewx0DHziZC1ChGzVxFPr69ZCJx5dn0ea6p75ZCELoTwZDZD';
         # Create a connection
         $url = 'https://graph.facebook.com/v13.0/101900062567452/messages';
         //$url = 'localhost/worksi-web/generate-electronic-billing';
