@@ -1,3 +1,5 @@
+import { ErrorInterceptor } from './interceptor/error.interceptor';
+import { JwtInterceptor } from './interceptor/jwt.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -12,7 +14,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { TicketDetailComponent } from './components/ticket-detail/ticket-detail.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModalCrearTicketComponent } from './components/modals/modal-crear-ticket/modal-crear-ticket.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -44,7 +46,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     SimpleNotificationsModule.forRoot({}),
     Ng2SmartTableModule
   ],
-  providers: [CanDeactivateGuard,{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [CanDeactivateGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

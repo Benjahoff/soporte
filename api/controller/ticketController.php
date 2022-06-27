@@ -12,7 +12,7 @@ class ticketController extends crudController
     {
         parent::__construct();
         $this->response = new stdClass();
-        $this->token = 'Authorization: Bearer EAAKnnxNa2QoBAE6MuZBiDZC5bXrPJOZCBHZAfKGZB0NdifctJg6wWXbzxrX1lVxqqSQfcPl7A7nzZCCZAJTKKIdKWmdS0NUNcPdqKcUhOn4YlZAkh9cQZANNyZAwoTi2q8A6ZCqgknBeII9fgWLj0pr0hmvOKWYzAICKI6994ul1k1oMLT6ZAVNFZAbO4';
+        $this->token = 'Authorization: Bearer EAAcH7gqhox0BAFwTZCRzoZADbt8KMhbxJVBzMEK6A5vy05IZCiiE6K6eXoVyZBan6svOd0jjJX6ZC6Xt7ucZBQ3nZBOyzUR9gL3ePr8ZB13n7JmKf79gdoregTDpyXhKtrjHw8ZBmEU5ZBR6ggI5so9AKWZCMZAexhglucpkJtHtvbsmlAZDZD';
     }
 
     public function addTicket()
