@@ -1,6 +1,7 @@
 import { AuthService } from './../../services/auth.service';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent {
   faLogout = faArrowAltCircleRight;
 
   userId: any = -1;
-  constructor(private AuthService:AuthService) { 
+  constructor(private AuthService:AuthService, private router: Router) { 
     this.AuthService.currentUserSubject.subscribe((val)=>{
       if (val && val['id']) {
         this.userId = val['id']
@@ -21,6 +22,7 @@ export class HeaderComponent {
 
   logout(){
     this.AuthService.logout();
-    window.location.reload();
+    this.router.navigate(['https://worksi.ar'])
+    //window.location.reload();
   }
 }
