@@ -19,6 +19,7 @@ export class ModalCrearTicketComponent implements OnInit {
   titulo:string = '';
   detalle:string = '';
   equipo:string = '';
+  anydesk:string = '';
   camposCompletos:boolean = true;
   constructor(private modalService: NgbModal, private ticketService:TicketService) {
     let sessionUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -70,7 +71,7 @@ export class ModalCrearTicketComponent implements OnInit {
   crearTicket(){
     if (this.titulo.length > 4 && this.detalle.length > 4 && this.equipo.length > 4) {
       this.camposCompletos = true;
-      this.ticketService.addTicket(this.userId, this.titulo, this.equipo, this.detalle)
+      this.ticketService.addTicket(this.userId, this.titulo, this.equipo,this.anydesk, this.detalle)
       .subscribe(() =>{
         this.detalle = '';
         this.titulo = '';

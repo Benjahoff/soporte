@@ -23,11 +23,12 @@ export class TicketService {
     .get<any>(`${environment.endpoint}/getTicketDetalle/`+ticketId)
   }
 
-  addTicket(userId, titulo, equipo, detalle){
+  addTicket(userId, titulo, equipo, anydesk, detalle){
     let data = {
       userId: userId,
       titulo: titulo,
       equipo: equipo,
+      anydesk: anydesk,
       detalle: detalle
     }
     return this.http
