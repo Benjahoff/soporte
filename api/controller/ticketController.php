@@ -21,18 +21,22 @@ class ticketController extends crudController
         $titulo= $this->data->titulo;
         $equipo= $this->data->equipo;
         $detalle= $this->data->detalle;
-        $sql = "INSERT INTO ticket(titulo, dispositivo, user_id, estado_id) VALUES ('$titulo', '$equipo', $userId, 1)";
+        $anydesk= $this->data->anydesk;
+        $sql = "INSERT INTO ticket(titulo, dispositivo,anydesk, user_id, estado_id) VALUES ('$titulo', '$equipo','$anydesk', $userId, 1)";
         $this->modularModel->sqlVarios($sql);
         $sql = "SELECT MAX( id ) AS id FROM ticket;";
         $ticketId = $this->modularModel->sqlVariosReturn($sql,"O");
         $sql = "INSERT INTO ticketrenglon(ticket_id, user_id, detalle) VALUES ({$ticketId[0]->id}, $userId, '$detalle');";
         $this->modularModel->sqlVarios($sql);
         $this->response->status = "OK";
-        $admins = $this->modularModel->getRegistrosTabla('user','nivel >= 9','',"O");
+        require_once 'mailController.php';
+        $mailController = new mailController();
+        $mailController->createTicketMail( $ticketId[0]->id, $userId, $titulo, $detalle, $anydesk);
+        /* $admins = $this->modularModel->getRegistrosTabla('user','nivel >= 9','',"O");
         foreach ($admins as $key => $admin) {
             $numero = '+54' . $admin->telefono;
             $this->enviarWhatsApp($numero, $ticketId[0]->id);
-        }
+        } */
         $this->returnData($this->response, 200);
     }
 
@@ -43,9 +47,9 @@ class ticketController extends crudController
         $levelUser = $userData->level;
         $idUser = $userData->id;
         if ($levelUser > 6) {
-            $sql = "SELECT t.id, t.titulo, t.dispositivo, t.fecha, u.username, e.descripcion AS estado, e.color FROM ticket t, estado e, user u WHERE t.user_id = u.id AND t.estado_id = e.id;";
+            $sql = "SELECT t.id, t.titulo, t.dispositivo,t.anydesk, t.fecha, u.username, e.descripcion AS estado, e.color FROM ticket t, estado e, user u WHERE t.user_id = u.id AND t.estado_id = e.id;";
         } else {
-            $sql = "SELECT t.id, t.titulo, t.dispositivo, t.fecha, u.username, e.descripcion AS estado, e.color FROM ticket t, estado e, user u WHERE t.user_id = $idUser AND t.user_id = u.id AND t.estado_id = e.id;";
+            $sql = "SELECT t.id, t.titulo, t.dispositivo,t.anydesk, t.fecha, u.username, e.descripcion AS estado, e.color FROM ticket t, estado e, user u WHERE t.user_id = $idUser AND t.user_id = u.id AND t.estado_id = e.id;";
         }
         $tickets = $this->modularModel->sqlVariosReturn($sql, "O");
         $this->response->tickets = $tickets;
@@ -55,7 +59,7 @@ class ticketController extends crudController
     public function getTicketDetalle($params = [])
     {
         $id = $params[':id'];
-        $sql = "SELECT t.id, t.titulo, t.dispositivo, t.fecha, u.username, e.descripcion AS estado, e.id AS estadoId FROM ticket t, estado e, user u WHERE t.id = $id AND t.user_id = u.id AND t.estado_id = e.id;";
+        $sql = "SELECT t.id, t.titulo, t.dispositivo, t.anydesk, t.fecha, u.username, e.descripcion AS estado, e.id AS estadoId FROM ticket t, estado e, user u WHERE t.id = $id AND t.user_id = u.id AND t.estado_id = e.id;";
         $ticket = new stdClass();
         $ticket = $this->modularModel->sqlVariosReturn($sql, "O");
         $sql = "SELECT tr.detalle, tr.fecha, u.username, u.id AS userId FROM ticketrenglon tr, user u WHERE tr.ticket_id = $id AND u.id = tr.user_id ORDER BY tr.id;";

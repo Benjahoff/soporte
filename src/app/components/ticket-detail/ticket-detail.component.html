@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="card-title">Detalle de ticket: #2</h2>
+                <h2 class="card-title" *ngIf="!loadingTicket">Detalle de ticket: #{{ticket.id}}</h2>
             </div>
         </div>
     </div>
@@ -15,6 +15,9 @@
                     </div>
                     <div class="col-8">
                         <h5>Dispositivo: {{ticket.dispositivo}}</h5>
+                    </div>
+                    <div class="col-8">
+                        <h5>AnyDesk: {{ticket.anydesk}}</h5>
                     </div>
                     <div class="col-8"  *ngIf="levelUser <= 8">
                         <h5>Estado: {{ticket.estado}}</h5>

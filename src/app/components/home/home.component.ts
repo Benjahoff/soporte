@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
       custom: [
         {
           name: 'Ver Detalle',
-          title: 'Ver Detalle',
+          title: 'Detalle',
         },
       ],
     },
@@ -38,6 +38,9 @@ export class HomeComponent implements OnInit {
       },
       dispositivo: {
         title: 'Dispositivo'
+      },
+      anydesk: {
+        title: 'AnyDesk'
       },
       fecha: {
         title: 'Fecha'
