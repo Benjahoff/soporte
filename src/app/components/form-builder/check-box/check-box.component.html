@@ -1,0 +1,10 @@
+<div class="form-group" [formGroup]="contactForm">
+    <!-- <div class="checkbox" *ngFor="let opt of prop.opts">
+        <label><input type="checkbox" [(ngModel)]="model[opt.name]">{{opt.label}}</label>
+    </div> -->
+    <label for="{{prop.name}}">{{prop.label}}</label>
+    <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input form-control" [id]="prop.name" [formControlName]="prop.name" >
+        <label class="custom-control-label" for="{{prop.name}}"></label>
+    </div>
+</div>

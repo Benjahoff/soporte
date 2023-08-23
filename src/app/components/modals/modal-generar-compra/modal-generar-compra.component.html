@@ -1,0 +1,37 @@
+<ng-template class="theme-modal" #modalGenerarCompra  let-modal>
+    <div class= "modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Agregar ticket</h5>
+            <button type="button" class="close" (click)="closeModal()"data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <small *ngIf="!camposCompletos">
+                <p class="text-danger ">Complete todos los campos *</p>
+            </small>
+            <div class="row">
+                <div class="form-group col-8 ml-2">
+                    <label for="InputTitulo">nombre</label>
+                    <input type="text" class="form-control" [(ngModel)]="titulo" #InputTitulo />
+                </div>
+                <div class="form-group col-8 ml-2">
+                    <label for="InputTitulo">importe</label>
+                    <input type="text" class="form-control" [(ngModel)]="equipo" #InputEquipo />
+                </div>
+                <div class="form-group col-8 ml-2">
+                    <label for="InputTitulo">AnyDesk</label>
+                    <input type="text" class="form-control" [(ngModel)]="anydesk" #InputAnydesk />
+                </div>
+                <div class="form-group col-12 ml-2">
+                    <label for="InputTitulo">Detalle</label>
+                    <textarea rows="3" class="form-control" cols="15"  [(ngModel)]="detalle" ></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" (click)="crearTicket()">Crear ticket</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+          </div>
+    </div>
+</ng-template>

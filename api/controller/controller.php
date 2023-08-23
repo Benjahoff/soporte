@@ -16,8 +16,10 @@ class controller
         Sentry\init(['dsn' => 'https://cb9931b44a07497eaf334c0e85717f43@o938498.ingest.sentry.io/5888284']);
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $this->modularModel = new modelBase();
-        $this->uri = 'http://localhost/worksi-soporte/';
-        $this->uriApi = 'http://localhost/worksi-soporte/api';
+        //$this->uri = 'http://localhost/worksi-soporte/';
+        //$this->uriApi = 'http://localhost/worksi-soporte/api';
+        $this->uri = 'http://localhost/soporte/';
+        $this->uriApi = 'http://localhost/soporte/api';
 
         // endpoint prod
         //$this->uri = 'https://wks.ar/soporte/';

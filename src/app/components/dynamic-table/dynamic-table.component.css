@@ -1,0 +1,11 @@
+.no-data-available {
+    text-align: center;
+}
+
+.dataTables_empty {
+    display: none;
+}
+
+.dataTables_wrapper .dataTables_processing {
+    margin-top: 20px !important;
+}

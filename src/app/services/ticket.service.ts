@@ -6,6 +6,10 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class TicketService {
+  
+  management(){
+    return this.http.get(`${environment.endpoint}/backoffice/management`);
+  }
 
 
   constructor(private http: HttpClient) { }

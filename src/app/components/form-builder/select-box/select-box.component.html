@@ -1,0 +1,6 @@
+<div class="form-group" [formGroup]="contactForm">
+    <label for="sel1">{{prop.label}}</label>
+    <select class="form-control" [formControlName]="prop.name" [name]="prop.name">
+      <option *ngFor="let opt of prop.options" [value]="opt.value">{{opt.name}}</option>
+    </select>
+</div>

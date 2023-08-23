@@ -245,7 +245,6 @@ class authController extends controller
         $this->isAuthenticated();
         $userData = $this->getData($this->getToken());
         $levelUser = $userData->level;
-        $rolUser = $userData->role;
         $tabla = $this->modularModel->getRegistrosTabla("tablaaux", "nivel <= $levelUser AND nombre = '$table'", "", "O");
         if ($tabla) {
             return true;
@@ -259,7 +258,6 @@ class authController extends controller
         $this->isAuthenticated();
         $userData = $this->getData($this->getToken());
         $levelUser = $userData->level;
-        $rolUser = $userData->role;
         $tabla = $this->modularModel->getRegistrosTabla("tablaaux", "nivel <= $levelUser AND nombre = '$table'", "", "O");
         if ($tabla) {
             return true;

@@ -1,0 +1,8 @@
+<div class="form-group" [formGroup]="contactForm">
+    <label >{{prop.label}}</label>
+    <input *ngIf="!prop.multi" [type]="prop.inputType" class="form-control" [maxlength]="prop.length" [id]="prop.name" [formControlName]="prop.name" >
+    <textarea *ngIf="prop.multi" class="form-control" rows="5"  [maxlength]="prop.length" [formControlName]="prop.name"></textarea>
+    <div *ngFor="let validation of prop.validations;">
+        <small class="form-text text-danger" *ngIf="contactForm.get(prop.name).hasError(validation.name)">{{validation.message}}</small>
+    </div>
+</div>  
