@@ -1,0 +1,6 @@
+<div class="form-group">
+    <label >{{prop.label}}</label>
+    <div class="radio" *ngFor="let opt of prop.opts">
+      <label><input type="radio" [(ngModel)]="model[prop.name]" [name]="prop.name" [value]="opt.value">{{opt.label}}</label>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<!-- <div class="form-group form-check" [formGroup]="group">
+    <input [type]="field.inputType" class="form-check-input" [formControlName]="field.name">
+    <label class="form-check-label" for="exampleCheck1">{{field.label}}</label>
+    <ng-container *ngFor="let validation of field.validations;" ngProjectAs="small">
+        <small class="form-text text-danger" *ngIf="group.get(field.name).hasError(validation.name)">{{validation.message}}</small>
+    </ng-container>
+</div> -->
+<!-- <div class="custom-control custom-switch">
+    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+    <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+  </div> -->
+      
+<div class="form-group form-check custom-control custom-switch" [formGroup]="group">
+    <input [type]="field.inputType" class="custom-control-input" id="customSwitch{{field.name}}" (click)="toogleCheck($event)" [checked]="field.value === '1'"  [formControlName]="field.name">
+    <label class="custom-control-label" for="customSwitch{{field.name}}">{{field.label}}</label>
+
+    <ng-container *ngFor="let validation of field.validations;" ngProjectAs="small">
+        <small class="form-text text-danger" *ngIf="group.get(field.name).hasError(validation.name)">{{validation.message}}</small>
+    </ng-container>
+</div>
+
+

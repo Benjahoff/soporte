@@ -1,0 +1,20 @@
+<div class="card animated fadeIn">
+    <div class="card-header">
+      <strong>{{table | titlecase }}</strong>
+      <small>Registro</small>
+    </div>
+    <div class="card-body" #prueba>
+      <div class="row">
+       
+        <div class="col-sm-12" *ngIf="!loadingForm">
+            <dynamic-form [fields]="regConfig" (submit)="submit($event)" *ngIf="regConfig.length>0">
+            </dynamic-form>
+        </div>
+        <div class="col-sm-12 text-center" *ngIf="loadingForm"> 
+          <div class="spinner-border spinner-border-sm" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+    </div>
+</div>
+

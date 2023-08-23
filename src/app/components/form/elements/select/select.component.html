@@ -1,0 +1,23 @@
+<div class="form-group" [formGroup]="group">
+    <label for="exampleFormControlSelect1">{{field.label}}</label>
+    <div class="row">
+        <div class="col-sm-12  mt-1" [ngClass]="{'col-md-10': field.addButton, 'col-md-12': !field.addButton }">
+            <ng-select [formControlName]="field.name" [items]="itemsBuffer" bindLabel="name" bindValue="value" placeholder="Seleccione {{field.label}}" [virtualScroll]="true" [loading]="loading" appendTo="body" (scroll)="onScroll($event)" (scrollToEnd)="onScrollToEnd()"  (keyup)="multiselectSearch($event)">
+                <ng-template ng-header-tmp>
+                    <small class="form-text text-muted">Cargado {{itemsBuffer.length}} de {{field.options.length}}</small>
+                </ng-template>
+                <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                    {{item.name}}
+                </ng-template>
+            </ng-select>
+            <ng-container *ngFor="let validation of field.validations;" ngProjectAs="small">
+                <small class="form-text text-danger" *ngIf="group.get(field.name).hasError(validation.name)">{{validation.message}}</small>
+            </ng-container>
+        </div>
+        <div class="col-sm-12 col-md-2 mt-1" *ngIf="field.addButton">
+            <button type="button" (click)="newRegister()" class="text-white btn btn-block btn-dark">Nuevo <i class="fa fa-plus" title="Nuevo"></i></button>
+        </div>
+    </div>
+</div>
+
+<!--Using ng-option and for loop-->

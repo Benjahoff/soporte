@@ -1,1 +1,30 @@
-<p>dynamic-table works!</p>
+<div class="animated fadeIn">
+
+    <div class="card">
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <h4 class="card-title mb-0">{{table }}</h4>
+                        <div class="small text-muted">Tabla registros</div>
+                    </div>
+                    <button class="btn btn-primary ml-auto" (click)="openCreate()" [disabled]="!loadingDataForm">Crear registro</button>
+                </div>
+            </div>
+            <!--/.row-->
+            <div class="row mt-4">
+                <div class="col-sm-12 text-center" *ngIf="!tableGeneralData">
+                    <div class="spinner-border " role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 table-responsive" *ngIf="tableGeneralData">
+                    <ng2-smart-table #tableNg2 [settings]="settings" [source]="data" (edit)="openEdit($event)" (delete)="openDelete($event)"></ng2-smart-table>
+                </div>
+            </div>
+        </div>
+    </div>
+<app-modal-create-update #modalCreateUpdate [modal]="modalCreateUpdateData"  *ngIf="loadingDataForm" (submit)="createElement($event)"></app-modal-create-update>
+<app-modal-confirm #modalDelete [modal]="modalDeleteData" (confirmEvent)="deleteRecord()"></app-modal-confirm>
+</div>

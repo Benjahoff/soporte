@@ -1,0 +1,7 @@
+<div class="form-group" [formGroup]="group">
+    <label for="exampleFormControlSelect1">{{field.label}}</label>
+    <input [type]="field.inputType" [maxlength]="field.length" class="form-control" [formControlName]="field.name">
+    <ng-container *ngFor="let validation of field.validations;" ngProjectAs="small">
+        <small class="form-text text-danger" *ngIf="group.get(field.name).hasError(validation.name)">{{validation.message}}</small>
+    </ng-container>
+</div>

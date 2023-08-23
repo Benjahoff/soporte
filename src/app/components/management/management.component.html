@@ -1,0 +1,33 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12 ">
+            <div class="card">
+                <div class="card-body">
+                    <a (click)="goHome()" class="text-dark pointer"
+                    ><i class="fa fa-angle-left" aria-hidden="true"></i>
+                    Volver</a
+                    >
+                    <div class="h4 m-0" >Configuracion </div>
+                    <div>Tablas</div>
+                   
+                    <small class="text-muted animated fadeIn" *ngIf="!loadingForm">Total {{tables.length}} tablas en el sistema.</small>
+                    <div class="row mt-4" >
+                            <div class="col-sm-12 " *ngIf="!loadingForm">
+                                <select [ngModel]="tables" (ngModelChange)="selectOption($event)"class="form-control mb-2">
+                                    <option *ngFor="let option of tables" [ngValue]="option" >{{option.name}}</option>
+                                </select>
+                               <button class="btn btn-primary float-right" *ngIf="isOptSelected" (click)="goToSelect()">Seleccionar Tabla</button>
+                            </div>
+                            <div class="col-sm-12 text-center" *ngIf="loadingForm">
+                                <div class="spinner-border spinner-border-sm" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+
+    </div>
+</div>

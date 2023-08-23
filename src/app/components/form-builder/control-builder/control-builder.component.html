@@ -1,0 +1,6 @@
+<div [ngSwitch]="prop.type">    
+    <app-check-box *ngSwitchCase="'checkbox'" [prop]="prop" [model]="model" [contactForm]="contactForm"></app-check-box>
+    <app-radio-button *ngSwitchCase="'radio'" [prop]="prop" [model]="model" [contactForm]="contactForm"></app-radio-button>
+    <app-select-box *ngSwitchCase="'select'" [prop]="prop" [model]="model" [contactForm]="contactForm"></app-select-box>
+    <app-text-box *ngSwitchCase="'input'" [prop]="prop" [model]="model" [contactForm]="contactForm"></app-text-box>
+</div>
