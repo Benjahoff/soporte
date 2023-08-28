@@ -8,8 +8,8 @@
 /bazel-out
 
 .env
-/vendor
-/composer.lock
+/api/vendor
+/api/composer.lock
 
 # dependencies
 /node_modules
