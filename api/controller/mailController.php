@@ -78,8 +78,7 @@ class mailController extends crudController
   {
     $url = 'https://api.sendgrid.com/';
     $user = "apiKey";
-    $pass = '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';
-    //$pass = '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';
+    $pass = getenv('PASS_SENGRID');
     $headr = array();
     $headr[] = 'Authorization: Bearer ' . $pass;
     $params = array(
